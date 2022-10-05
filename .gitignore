@@ -153,4 +153,4 @@ logs/
 .gitpod.yml
 /data
 /logs
-!/requirements_old.txt
+requirements_old.txt
