@@ -148,8 +148,9 @@ dmypy.json
 configs/local/default.yaml
 data/
 logs/
-.env
+#.env
 .autoenv
 .gitpod.yml
 /data
 /logs
+!/requirements_old.txt

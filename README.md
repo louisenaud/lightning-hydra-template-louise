@@ -38,7 +38,7 @@ conda activate myenv
 # https://pytorch.org/get-started/
 
 # install requirements
-pip install -r requirements.txt
+pip install -r requirements_old.txt
 ```
 
 Train model with default configuration
