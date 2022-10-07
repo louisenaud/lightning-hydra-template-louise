@@ -33,6 +33,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
           pip install sh
+          pip install pyrootutils
 
       - name: List dependencies
         run: |
