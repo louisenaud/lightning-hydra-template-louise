@@ -136,6 +136,11 @@ pip install -r requirements_old.txt
 poetry install
 ```
 
+### Export requirements
+```bash
+poetry export -o requirements.txt --without-hashes --with dev
+```
+
 Train model with default configuration
 
 ```bash
