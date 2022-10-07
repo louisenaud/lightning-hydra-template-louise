@@ -1984,7 +1984,7 @@ testing = ["coverage (>=5.0)", "pytest", "pytest-cover"]
 
 [[package]]
 name = "wandb"
-version = "0.13.3"
+version = "0.13.4"
 description = "A CLI and library for interacting with the Weights and Biases API."
 category = "main"
 optional = false
@@ -1996,7 +1996,7 @@ docker-pycreds = ">=0.4.0"
 GitPython = ">=1.0.0"
 pathtools = "*"
 promise = ">=2.0,<3"
-protobuf = ">=3.12.0,<4.0dev"
+protobuf = ">=3.12.0,<4.0.0 || >=4.1.0,<4.21.0 || >4.21.0,<5"
 psutil = ">=5.0.0"
 PyYAML = "*"
 requests = ">=2.0.0,<3"
@@ -2098,7 +2098,7 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.12"
-content-hash = "cfc9760c76dbaadd83ffc95e4c18a4bc4c5472308bf13a4ec356dd7d6f2b85dc"
+content-hash = "c56c99c984d3dd76d62e3a0fe5c7a86ec56dcf939de31dd886015ed6e4275d4a"
 
 [metadata.files]
 absl-py = [
@@ -3237,7 +3237,6 @@ promise = [
     {file = "promise-2.3.tar.gz", hash = "sha256:dfd18337c523ba4b6a58801c164c1904a9d4d1b1747c7d5dbf45b693a49d93d0"},
 ]
 protobuf = [
-    {file = "protobuf-3.19.6-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:5e2e5d83c75fb61be40c001cfbcb0e5f912a30e147b369e0ed3744406098a779"},
     {file = "protobuf-3.19.6-cp310-cp310-manylinux2014_aarch64.whl", hash = "sha256:010be24d5a44be7b0613750ab40bc8b8cedc796db468eae6c779b395f50d1fa1"},
     {file = "protobuf-3.19.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:11478547958c2dfea921920617eb457bc26867b0d1aa065ab05f35080c5d9eb6"},
     {file = "protobuf-3.19.6-cp310-cp310-win32.whl", hash = "sha256:559670e006e3173308c9254d63facb2c03865818f22204037ab76f7a0ff70b5f"},
@@ -3805,8 +3804,8 @@ waitress = [
     {file = "waitress-2.1.2.tar.gz", hash = "sha256:780a4082c5fbc0fde6a2fcfe5e26e6efc1e8f425730863c04085769781f51eba"},
 ]
 wandb = [
-    {file = "wandb-0.13.3-py2.py3-none-any.whl", hash = "sha256:a246ed531ae405f2c95d299adb7311f2cf333c6c73ce36e3fcaaae60f0817c6c"},
-    {file = "wandb-0.13.3.tar.gz", hash = "sha256:8f91a8b67949313769c686e4f5139e4c247de8ce140e72fdcdd7896da2ea1c87"},
+    {file = "wandb-0.13.4-py2.py3-none-any.whl", hash = "sha256:ce64648325a22c3166f23e00aaf373732d0450196242a0a93efd774f7e79f9c0"},
+    {file = "wandb-0.13.4.tar.gz", hash = "sha256:51e2672e12cca94680f6bcff0af80822d562e6b7846036050fc5bdd00240ea75"},
 ]
 websocket-client = [
     {file = "websocket-client-1.4.1.tar.gz", hash = "sha256:f9611eb65c8241a67fb373bef040b3cf8ad377a9f6546a12b620b6511e8ea9ef"},
