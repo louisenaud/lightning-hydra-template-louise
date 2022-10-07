@@ -41,7 +41,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          pytest -v
+          pytest -v -k "not slow"
 
   #  run_tests_windows:
   #    runs-on: ${{ matrix.os }}
