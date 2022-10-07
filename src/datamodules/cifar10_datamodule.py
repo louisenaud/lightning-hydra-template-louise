@@ -1,3 +1,4 @@
+import ssl
 from typing import Any, Dict, Optional, Tuple
 
 import torch
@@ -6,7 +7,6 @@ from torch.utils.data import ConcatDataset, DataLoader, Dataset, random_split
 from torchvision.datasets import CIFAR10
 from torchvision.transforms import transforms
 
-import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
@@ -54,7 +54,10 @@ class CIFAR10DataModule(LightningDataModule):
 
         # data transformations
         self.transforms = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.4915, 0.4823, .4468), (0.2470, 0.2435, 0.2616))]
+            [
+                transforms.ToTensor(),
+                transforms.Normalize((0.4915, 0.4823, 0.4468), (0.2470, 0.2435, 0.2616)),
+            ]
         )
 
         self.data_train: Optional[Dataset] = None

@@ -7,16 +7,17 @@ root = pyrootutils.setup_root(
     dotenv=True,
 )
 
-from typing import List, Tuple
+from typing import Tuple
 
-import torch
-import hydra
 import gradio as gr
+import hydra
+import torch
 from omegaconf import DictConfig
 
 from src import utils
 
 log = utils.get_pylogger(__name__)
+
 
 def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     """Demo function.
@@ -55,11 +56,11 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
 
     demo.launch()
 
-@hydra.main(
-    version_base="1.2", config_path=root / "configs", config_name="demo_scripted.yaml"
-)
+
+@hydra.main(version_base="1.2", config_path=root / "configs", config_name="demo_scripted.yaml")
 def main(cfg: DictConfig) -> None:
     demo(cfg)
+
 
 if __name__ == "__main__":
     main()

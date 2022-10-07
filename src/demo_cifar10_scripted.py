@@ -7,17 +7,18 @@ root = pyrootutils.setup_root(
     dotenv=True,
 )
 
-from typing import List, Tuple
+from typing import Tuple
 
-import torch
-import hydra
 import gradio as gr
-from omegaconf import DictConfig
+import hydra
+import torch
 import torchvision.transforms as T
+from omegaconf import DictConfig
 
 from src import utils
 
 log = utils.get_pylogger(__name__)
+
 
 def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     """Demo function.
@@ -36,7 +37,6 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     model = torch.jit.load(cfg.ckpt_path)
 
     log.info(f"Loaded Model: {model}")
-    
 
     def recognize_digit(image):
         if image is None:
@@ -46,34 +46,25 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
         preds = model.forward_jit(image)
         preds = preds[0].tolist()
         print(preds)
-        labels = [
-            "plane", 
-            "car", 
-            "bird", 
-            "cat",
-            "deer", 
-            "dog", 
-            "frog", 
-            "horse", 
-            "ship", 
-            "truck"
-            ]
+        labels = ["plane", "car", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
         return {labels[i]: preds[i] for i in range(10)}
 
     demo = gr.Interface(
         fn=recognize_digit,
-        inputs=[gr.Image(shape=(32,32))],
+        inputs=[gr.Image(shape=(32, 32))],
         outputs=[gr.Label(num_top_classes=10)],
         live=True,
     )
 
     demo.launch(server_name="0.0.0.0", server_port=8080)
 
+
 @hydra.main(
     version_base="1.2", config_path=root / "configs", config_name="demo_cifar10_scripted.yaml"
 )
 def main(cfg: DictConfig) -> None:
     demo(cfg)
+
 
 if __name__ == "__main__":
     main()

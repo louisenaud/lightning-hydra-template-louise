@@ -1,11 +1,11 @@
 from typing import Any, List
 
-import timm
 import torch
 from pytorch_lightning import LightningModule
 from torchmetrics import MaxMetric
 from torchmetrics.classification.accuracy import Accuracy
 from torchvision import transforms as T
+
 
 class TimmLitModule(LightningModule):
     """Example of LightningModule for MNIST classification.
@@ -47,7 +47,7 @@ class TimmLitModule(LightningModule):
         # for logging best so far validation accuracy
         self.val_acc_best = MaxMetric()
 
-        self.predict_transform = T.Normalize((0.4915, 0.4823, .4468), (0.2470, 0.2435, 0.2616))
+        self.predict_transform = T.Normalize((0.4915, 0.4823, 0.4468), (0.2470, 0.2435, 0.2616))
 
     def forward(self, x: torch.Tensor):
         return self.net(x)
@@ -68,7 +68,6 @@ class TimmLitModule(LightningModule):
         # by default lightning executes validation step sanity checks before training starts,
         # so we need to make sure val_acc_best doesn't store accuracy from these checks
         self.val_acc_best.reset()
-        
 
     def step(self, batch: Any):
         x, y = batch
@@ -109,7 +108,7 @@ class TimmLitModule(LightningModule):
         acc = self.val_acc.compute()  # get val accuracy from current epoch
         self.val_acc_best.update(acc)
         self.log("val/acc_best", self.val_acc_best.compute(), on_epoch=True, prog_bar=True)
-        
+
         self.val_acc.reset()
 
     def test_step(self, batch: Any, batch_idx: int):

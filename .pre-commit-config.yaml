@@ -22,28 +22,28 @@ repos:
     rev: 22.6.0
     hooks:
       - id: black
-        args: [ --line-length, "99" ]
+        args: [--line-length, "99"]
 
   # python import sorting
   - repo: https://github.com/PyCQA/isort
     rev: 5.10.1
     hooks:
       - id: isort
-        args: [ "--profile", "black", "--filter-files" ]
+        args: ["--profile", "black", "--filter-files"]
 
   # python upgrading syntax to newer version
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.32.1
     hooks:
       - id: pyupgrade
-        args: [ --py38-plus ]
+        args: [--py38-plus]
 
   # python docstring formatting
   - repo: https://github.com/myint/docformatter
     rev: v1.4
     hooks:
       - id: docformatter
-        args: [ --in-place, --wrap-summaries=99, --wrap-descriptions=99 ]
+        args: [--in-place, --wrap-summaries=99, --wrap-descriptions=99]
 
   # python check (PEP8), programming errors and code complexity
   - repo: https://github.com/PyCQA/flake8
@@ -51,21 +51,21 @@ repos:
     hooks:
       - id: flake8
         args:
-          [ "--ignore", "E402,E501,F401,F841,W504", "--exclude", "logs/*,data/*" ]
+          ["--ignore", "E402,E501,F401,F841,W504", "--exclude", "logs/*,data/*"]
 
   # python security linter
-  - repo: https://github.com/PyCQA/bandit
-    rev: "1.7.1"
-    hooks:
-      - id: bandit
-        args: [ "-s", "B101" ]
+  #  - repo: https://github.com/PyCQA/bandit
+  #    rev: "1.7.1"
+  #    hooks:
+  #      - id: bandit
+  #        args: ["-s", "B101"]
 
   # yaml formatting
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.7.1
     hooks:
       - id: prettier
-        types: [ yaml ]
+        types: [yaml]
 
   # jupyter notebook cell output clearing
   - repo: https://github.com/kynan/nbstripout
@@ -78,7 +78,7 @@ repos:
     rev: 0.7.14
     hooks:
       - id: mdformat
-        args: [ "--number" ]
+        args: ["--number"]
         additional_dependencies:
           - mdformat-gfm
           - mdformat-tables
@@ -87,18 +87,18 @@ repos:
           # - mdformat-black
 
   # word spelling linter
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.1.0
-    hooks:
-      - id: codespell
-        args:
-          - --skip=logs/**,data/**
-          # - --ignore-words-list=abc,def
+#  - repo: https://github.com/codespell-project/codespell
+#    rev: v2.1.0
+#    hooks:
+#      - id: codespell
+#        args:
+#          - --skip=logs/**,data/**
+#          # - --ignore-words-list=abc,def
 
-  - repo: https://github.com/python-poetry/poetry
-    rev: '1.2.1'  # add version here
-    hooks:
-      - id: poetry-check
-      - id: poetry-lock
-      - id: poetry-export
-        args: [ "-f", "requirements_old.txt", "-o", "requirements_old.txt" ]
+#  - repo: https://github.com/python-poetry/poetry
+#    rev: "1.2.1" # add version here
+#    hooks:
+#      - id: poetry-check
+#      - id: poetry-lock
+#      - id: poetry-export
+#        args: ["-f", "requirements.txt", "-o", "requirements.txt"]

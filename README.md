@@ -21,8 +21,6 @@
 
 <div align="center">
 
-[//]: # ([![Open in Gitpod]&#40;https://gitpod.io/button/open-in-gitpod.svg&#41;]&#40;https://gitpod.io/#https://github.com/vigneshbabupj/lightning-hydra-timm-template&#41;)
-
 </div>
 
 ## Description
@@ -168,7 +166,7 @@ Run as Docker image
 ## Build Docker container image
 make build
 
-## Run the container with experiment=example.yaml 
+## Run the container with experiment=example.yaml
 make run
 ```
 
@@ -343,7 +341,8 @@ python train.py +trainer.max_time="00:12:00:00"
 ```
 
 > **Note**: PyTorch Lightning provides
-> about [40+ useful trainer flags](https://pytorch-lightning.readthedocs.io/en/latest/common/trainer.html#trainer-flags).
+> about [40+ useful trainer flags](https://pytorch-lightning.readthedocs.io/en/latest/common/trainer.html#trainer-flags)
+> .
 
 </details>
 
@@ -464,7 +463,8 @@ python train.py -m seed=1,2,3,4,5 trainer.deterministic=True logger=csv tags=["b
 <summary><b>Execute sweep on a remote AWS cluster</b></summary>
 
 > **Note**: This should be achievable with simple config
-> using [Ray AWS launcher for Hydra](https://hydra.cc/docs/next/plugins/ray_launcher). Example is not implemented in this
+> using [Ray AWS launcher for Hydra](https://hydra.cc/docs/next/plugins/ray_launcher). Example is not implemented in
+> this
 > template.
 
 </details>
@@ -1253,6 +1253,3 @@ Other resources:
 
 - [Cookiecutter Data Science Project Structure Opinions](http://drivendata.github.io/cookiecutter-data-science/#opinions)
 - [The Machine Learning Reproducibility Checklist](https://www.cs.mcgill.ca/~jpineau/ReproducibilityChecklist.pdf)
-
-
-

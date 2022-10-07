@@ -33,8 +33,8 @@ root = pyrootutils.setup_root(
 from typing import List, Optional, Tuple
 
 import hydra
-import torch
 import pytorch_lightning as pl
+import torch
 from omegaconf import DictConfig
 from pytorch_lightning import Callback, LightningDataModule, LightningModule, Trainer
 from pytorch_lightning.loggers import LightningLoggerBase
@@ -123,7 +123,6 @@ def train(cfg: DictConfig) -> Tuple[dict, dict]:
 
 @hydra.main(version_base="1.2", config_path=root / "configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> Optional[float]:
-
     # train the model
     metric_dict, _ = train(cfg)
 
