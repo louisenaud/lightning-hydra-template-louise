@@ -100,7 +100,7 @@ jobs:
           pip install pyrootutils
 
       - name: Run tests and collect coverage
-        run: pytest --cov src # NEEDS TO BE UPDATED WHEN CHANGING THE NAME OF "src" FOLDER
+        run: pytest --cov src -k "not slow" # NEEDS TO BE UPDATED WHEN CHANGING THE NAME OF "src" FOLDER
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
