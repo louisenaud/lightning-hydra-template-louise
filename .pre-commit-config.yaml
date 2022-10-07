@@ -87,13 +87,13 @@ repos:
           # - mdformat-black
 
   # word spelling linter
-#  - repo: https://github.com/codespell-project/codespell
-#    rev: v2.1.0
-#    hooks:
-#      - id: codespell
-#        args:
-#          - --skip=logs/**,data/**
-#          # - --ignore-words-list=abc,def
+  #  - repo: https://github.com/codespell-project/codespell
+  #    rev: v2.1.0
+  #    hooks:
+  #      - id: codespell
+  #        args:
+  #          - --skip=logs/**,data/**
+  #          # - --ignore-words-list=abc,def
 
   - repo: https://github.com/python-poetry/poetry
     rev: "1.2.1" # add version here
@@ -101,4 +101,11 @@ repos:
       - id: poetry-check
       - id: poetry-lock
       - id: poetry-export
-        args: ["-f", "requirements.txt", "-o", "requirements.txt"]
+        args:
+          [
+            "-f",
+            "requirements.txt",
+            "-o",
+            "requirements.txt",
+            "--without-hashes",
+          ]
