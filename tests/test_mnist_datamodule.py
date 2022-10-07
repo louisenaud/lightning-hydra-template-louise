@@ -7,6 +7,7 @@ from src.datamodules.mnist_datamodule import MNISTDataModule
 
 
 @pytest.mark.parametrize("batch_size", [32, 128])
+@pytest.mark.slow
 def test_mnist_datamodule(batch_size):
     data_dir = "data/"
 
