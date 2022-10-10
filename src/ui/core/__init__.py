@@ -18,7 +18,6 @@ from .common import load_envs
 
 logger = logging.getLogger(__name__)
 
-
 # Load environment variables
 load_envs()
 
