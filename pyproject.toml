@@ -31,6 +31,7 @@ sh = "^1.14.3"
 pyrootutils = "^1.0.4"
 pre-commit = "^2.20.0"
 pylint = "^2.15.3"
+black = "^22.10.0"
 
 [build-system]
 requires = ["poetry-core"]
