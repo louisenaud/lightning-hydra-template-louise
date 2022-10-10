@@ -15,10 +15,11 @@ from typing import List
 import hydra
 import omegaconf
 import streamlit as st
-import wandb
 from hydra.core.global_hydra import GlobalHydra
 from hydra.experimental import compose
 from stqdm import stqdm
+
+import wandb
 
 from . import PROJECT_ROOT
 
