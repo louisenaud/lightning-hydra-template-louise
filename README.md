@@ -156,6 +156,9 @@ Train model with chosen experiment configuration from [configs/experiment/](conf
 
 ```bash
 python src/train.py experiment=experiment_name.yaml
+python src/train.py experiment=mnist.yaml trainer=cpu
+# on mac
+python src/train.py experiment=mnist.yaml trainer=mps
 ```
 
 You can override any parameter from command line like this
@@ -178,7 +181,7 @@ make run
 
 ## COG Inference
 
-Install COG
+Install [COG](https://github.com/replicate/cog) (containers for Machine Learning)
 
 ```bash
 sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/latest/download/cog_`uname -s`_`uname -m`
@@ -224,9 +227,10 @@ Demo based on Gradio app can be run from the torch script checkpoint
 ```bash
 #cifar10
 python3 src/demo_cifar10_scripted.py -m ckpt_path=<path to model.script.pt>
-
+#python -m src.demo_cifar10_scripted ckpt_path=logs/train/runs/2022-10-10_10-53-17/model.script.pt
 #mnist
 python3 src/demo_scripted.py -m ckpt_path=<path to model.script.pt>
+#python3 src/demo_scripted.py -m ckpt_path=logs/train/runs/2022-10-10_10-25-21/model.script.pt
 
 ```
 
@@ -1245,6 +1249,7 @@ This template was inspired by:
 - [PyTorchLightning/deep-learninig-project-template](https://github.com/PyTorchLightning/deep-learning-project-template)
 - [drivendata/cookiecutter-data-science](https://github.com/drivendata/cookiecutter-data-science)
 - [lucmos/nn-template](https://github.com/lucmos/nn-template)
+- [grok-ai/nn-template-core](https://github.com/grok-ai/nn-template-core)
 - [kedro-org/kedro](https://github.com/kedro-org/kedro)
 
 Useful repositories:

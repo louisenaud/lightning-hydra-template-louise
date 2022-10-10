@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "lightning_hydra_template_louise" }]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.12"
+python = ">=3.9,<3.9.7 || >3.9.7,<3.12"
 torch = "^1.12.1"
 torchvision = "^0.13.1"
 pytorch-lightning = "^1.7.7"
@@ -20,6 +20,9 @@ wandb = "^0.13.3"
 mlflow = "^1.29.0"
 gradio = "^3.4"
 bandit = "^1.7.4"
+streamlit = "^1.13.0"
+stqdm = "^0.0.4"
+lightning = "^2022.10.7"
 
 [tool.poetry.group.dev.dependencies]
 rich = "^12.6.0"

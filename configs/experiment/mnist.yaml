@@ -26,8 +26,8 @@ model:
   optimizer:
     lr: 0.002
   net:
-    lin1_size: 128
-    lin2_size: 256
+    lin1_size: 64
+    lin2_size: 128
     lin3_size: 64
 
 datamodule:
