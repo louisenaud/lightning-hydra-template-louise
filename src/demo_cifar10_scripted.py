@@ -59,9 +59,7 @@ def demo(cfg: DictConfig) -> Tuple[dict, dict]:
     demo.launch(server_name="0.0.0.0", server_port=8080)
 
 
-@hydra.main(
-    version_base="1.2", config_path=root / "configs", config_name="demo_cifar10_scripted.yaml"
-)
+@hydra.main(version_base="1.2", config_path=root / "configs", config_name="demo_cifar10_scripted.yaml")
 def main(cfg: DictConfig) -> None:
     demo(cfg)
 

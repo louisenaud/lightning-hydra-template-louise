@@ -48,9 +48,7 @@ class NNCheckpointIO(TorchCheckpointIO):
     def load(cls, path: Path, map_location: Optional[Callable] = lambda storage, loc: storage):
         return cls().load_checkpoint(path=str(path), map_location=map_location)
 
-    def save_checkpoint(
-        self, checkpoint: Dict[str, Any], path, storage_options: Optional[Any] = None
-    ) -> None:
+    def save_checkpoint(self, checkpoint: Dict[str, Any], path, storage_options: Optional[Any] = None) -> None:
         checkpoint_dir: Path = _normalize_path(path=path)
 
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -76,22 +74,16 @@ class NNCheckpointIO(TorchCheckpointIO):
 
             compress_checkpoint(src_dir=tmp_dir, dst_file=checkpoint_dir)
 
-    def load_checkpoint(
-        self, path, map_location: Optional[Callable] = lambda storage, loc: storage
-    ) -> Dict[str, Any]:
+    def load_checkpoint(self, path, map_location: Optional[Callable] = lambda storage, loc: storage) -> Dict[str, Any]:
         # load_checkpoint called from Trainer/Callbacks
         with extract_checkpoint(ckpt_file=Path(path)) as ckpt_dir:
-            checkpoint = super().load_checkpoint(
-                path=ckpt_dir / "checkpoint.ckpt", map_location=map_location
-            )
+            checkpoint = super().load_checkpoint(path=ckpt_dir / "checkpoint.ckpt", map_location=map_location)
 
             if _METADATA_MODULE_KEY in checkpoint:
                 metadata_path: Path = ckpt_dir / METADATA_KEY
                 if metadata_path.exists():
                     metadata_module = importlib.import_module(checkpoint[_METADATA_MODULE_KEY])
-                    metadata = getattr(metadata_module, checkpoint[_METADATA_CLASS_KEY]).load(
-                        src_path=metadata_path
-                    )
+                    metadata = getattr(metadata_module, checkpoint[_METADATA_CLASS_KEY]).load(src_path=metadata_path)
                     checkpoint[METADATA_KEY] = metadata
                     del checkpoint[_METADATA_MODULE_KEY]
                     del checkpoint[_METADATA_CLASS_KEY]
@@ -146,9 +138,7 @@ def extract_checkpoint(ckpt_file: Path) -> Path:
         yield Path(tmp_dir)
 
 
-def _substistute(
-    dictionary, substitute_values: Dict[str, str], substitute_keys: Dict[str, str] = {}
-):
+def _substistute(dictionary, substitute_values: Dict[str, str], substitute_keys: Dict[str, str] = {}):
     if not isinstance(dictionary, Mapping):
         if isinstance(dictionary, collections.Hashable):
             if substitute_values is not None and dictionary in substitute_values:
@@ -160,11 +150,7 @@ def _substistute(
         return dictionary
 
     return {
-        _substistute(
-            key,
-            substitute_values=substitute_values,
-            substitute_keys=substitute_keys,
-        ): _substistute(
+        _substistute(key, substitute_values=substitute_values, substitute_keys=substitute_keys,): _substistute(
             value,
             substitute_values=substitute_values,
             substitute_keys=substitute_keys,
@@ -185,17 +171,9 @@ def load_model(
         checkpoint = NNCheckpointIO.load(path=checkpoint_path, map_location=map_location)
 
         if substitute_values is not None:
-            checkpoint = _substistute(
-                checkpoint, substitute_values=substitute_values, substitute_keys=substitute_keys
-            )
+            checkpoint = _substistute(checkpoint, substitute_values=substitute_values, substitute_keys=substitute_keys)
 
-        return _load_state(
-            cls=module_class, checkpoint=checkpoint, metadata=checkpoint.get("metadata", None)
-        )
+        return _load_state(cls=module_class, checkpoint=checkpoint, metadata=checkpoint.get("metadata", None))
     else:
-        pylogger.warning(
-            f"Loading a legacy checkpoint (from vanilla PyTorch Lightning): '{checkpoint_path}'"
-        )
-        module_class.load_from_checkpoint(
-            checkpoint_path=str(checkpoint_path), map_location=map_location
-        )
+        pylogger.warning(f"Loading a legacy checkpoint (from vanilla PyTorch Lightning): '{checkpoint_path}'")
+        module_class.load_from_checkpoint(checkpoint_path=str(checkpoint_path), map_location=map_location)

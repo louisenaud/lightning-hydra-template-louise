@@ -31,9 +31,7 @@ st_run_sel = st.sidebar
 def local_checkpoint_selection(run_dir: Path, st_key: str) -> Path:
     checkpoint_paths: List[Path] = list(run_dir.rglob("checkpoints/*"))
     if len(checkpoint_paths) == 0:
-        st.error(
-            f"There's no checkpoint under {run_dir}! Are you sure the restore was successful?"
-        )
+        st.error(f"There's no checkpoint under {run_dir}! Are you sure the restore was successful?")
         st.stop()
     checkpoint_path: Path = st_run_sel.selectbox(
         label="Select a checkpoint",
@@ -59,9 +57,7 @@ def get_run_dir(entity: str, project: str, run_id: str) -> Path:
 
     timestamp: str = created_at.strftime("%Y%m%d_%H%M%S")
 
-    matching_runs: List[Path] = [
-        item for item in WANDB_DIR.iterdir() if item.is_dir() and item.name.endswith(run_id)
-    ]
+    matching_runs: List[Path] = [item for item in WANDB_DIR.iterdir() if item.is_dir() and item.name.endswith(run_id)]
 
     if len(matching_runs) > 1:
         st.error(f"More than one run matching unique id {run_id}! Are you sure about that?")
@@ -93,9 +89,7 @@ def select_run_path(st_key: str, default_run_path: str):
         st.stop()
     tokens: List[str] = run_path.split("/")
     if len(tokens) != 3:
-        st.error(
-            f"This run path {run_path} doesn't look like a WandB run path! Are you sure about that?"
-        )
+        st.error(f"This run path {run_path} doesn't look like a WandB run path! Are you sure about that?")
         st.stop()
 
     return tokens
