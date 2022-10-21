@@ -1244,7 +1244,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "mlflow"
-version = "1.29.0"
+version = "1.30.0"
 description = "MLflow: A Platform for ML Development and Productionization"
 category = "main"
 optional = false
@@ -1260,7 +1260,7 @@ entrypoints = "<1"
 Flask = "<3"
 gitpython = ">=2.1.0,<4"
 gunicorn = {version = "<21", markers = "platform_system != \"Windows\""}
-importlib-metadata = ">=3.7.0,<4.7.0 || >4.7.0,<5"
+importlib-metadata = ">=3.7.0,<4.7.0 || >4.7.0,<6"
 numpy = "<2"
 packaging = "<22"
 pandas = "<2"
@@ -1277,8 +1277,8 @@ waitress = {version = "<3", markers = "platform_system == \"Windows\""}
 
 [package.extras]
 aliyun-oss = ["aliyunstoreplugin"]
-extras = ["azureml-core (>=1.2.0)", "boto3", "google-cloud-storage (>=1.30.0)", "kubernetes", "mlserver (>=0.5.3)", "mlserver-mlflow (>=0.5.3)", "pyarrow", "pysftp", "scikit-learn", "virtualenv"]
-pipelines = ["Jinja2 (>=3.0)", "ipython (>=7.0)", "markdown (>=3.3)", "pandas-profiling (>=3.1)", "pyarrow (>=7.0)", "scikit-learn (>=1.0)", "shap (>=0.40)"]
+extras = ["azureml-core (>=1.2.0)", "boto3", "google-cloud-storage (>=1.30.0)", "kubernetes", "mlserver (>=0.5.3)", "mlserver-mlflow (>=0.5.3)", "pyarrow", "pysftp", "requests-auth-aws-sigv4", "scikit-learn", "virtualenv"]
+pipelines = ["Jinja2 (>=2.11)", "Jinja2 (>=3.0)", "ipython (>=7.0)", "markdown (>=3.3)", "pandas-profiling (>=3.1)", "pyarrow (>=7.0)", "scikit-learn (>=1.0)", "shap (>=0.40)"]
 sqlserver = ["mlflow-dbstore"]
 
 [[package]]
@@ -2714,7 +2714,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.9.7 || >3.9.7,<3.12"
-content-hash = "20a5238ec6a912c77eda6faf96c0443b8086384a5fce60c1d562d9700b6fe257"
+content-hash = "ae8917215123c0db167d11089bb886020e469ecb77f56bf1bba031c0c0f6965d"
 
 [metadata.files]
 absl-py = [
@@ -3732,8 +3732,8 @@ mdurl = [
     {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
 ]
 mlflow = [
-    {file = "mlflow-1.29.0-py3-none-any.whl", hash = "sha256:24d95c6a19eccef5abfe5430680d96e9ab27c67f01cd4cde0f7384cb67a5c69a"},
-    {file = "mlflow-1.29.0.tar.gz", hash = "sha256:fad518600f515bc81cbf77053d506b769441229105b6a4bf8575feaa63a00da9"},
+    {file = "mlflow-1.30.0-py3-none-any.whl", hash = "sha256:c464f40e902e4fc1f040f03dbb10b5b729a1fc5797e0d0f2e28c50481a416135"},
+    {file = "mlflow-1.30.0.tar.gz", hash = "sha256:2e7d51f6e2dc6cc2316e72dcf4135217c581c8f4f1f9dde1066aaba9e0b22c7a"},
 ]
 multidict = [
     {file = "multidict-6.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:0b9e95a740109c6047602f4db4da9949e6c5945cefbad34a1299775ddc9a62e2"},
