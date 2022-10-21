@@ -22,7 +22,7 @@ gradio = "^3.6"
 bandit = "^1.7.4"
 streamlit = "^1.13.0"
 stqdm = "^0.0.4"
-lightning = "^2022.10.7"
+lightning = "^2022.10.20"
 
 [tool.poetry.group.dev.dependencies]
 rich = "^12.6.0"

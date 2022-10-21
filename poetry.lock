@@ -1045,19 +1045,19 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "lightning"
-version = "2022.10.7"
+version = "2022.10.20"
 description = "Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos."
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-lightning-app = "0.6.3"
+lightning-app = "0.7.0"
 pytorch-lightning = ">=1.7.0,<1.8.0"
 
 [[package]]
 name = "lightning-app"
-version = "0.6.3"
+version = "0.7.0"
 description = "Use Lightning Apps to build everything from production-ready, multi-cloud ML systems to simple research demos."
 category = "main"
 optional = false
@@ -2714,7 +2714,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.9.7 || >3.9.7,<3.12"
-content-hash = "98a25c9c152faaa8948f411c3641e9ebff75e9b918685924f5b915f17e973d07"
+content-hash = "20a5238ec6a912c77eda6faf96c0443b8086384a5fce60c1d562d9700b6fe257"
 
 [metadata.files]
 absl-py = [
@@ -3603,12 +3603,12 @@ lazy-object-proxy = [
     {file = "lazy_object_proxy-1.7.1-pp37.pp38-none-any.whl", hash = "sha256:d66906d5785da8e0be7360912e99c9188b70f52c422f9fc18223347235691a84"},
 ]
 lightning = [
-    {file = "lightning-2022.10.7-py3-none-any.whl", hash = "sha256:abb93f4869b8d6333d150f99447b741abcdeb350da0608c7d9bed73c0d9b8e67"},
-    {file = "lightning-2022.10.7.tar.gz", hash = "sha256:01e41251f51dcad96713b4baf26dc522373b309e23996ce105ce600d2fbc7b59"},
+    {file = "lightning-2022.10.20-py3-none-any.whl", hash = "sha256:835c217185514387b405259b847bd89bc6f65aa4897601d4784c746b71b62f2e"},
+    {file = "lightning-2022.10.20.tar.gz", hash = "sha256:f6d1f2ab81fd72cbcdf8898130ddad6604fe1af2126a5a3bad305bd996fa3501"},
 ]
 lightning-app = [
-    {file = "lightning-app-0.6.3.tar.gz", hash = "sha256:238aabb747fef3911d5551039e8c4d3d24d73d9b452a6042eb19b3813dceeee5"},
-    {file = "lightning_app-0.6.3-py3-none-any.whl", hash = "sha256:966ed5a2a36f2da23c1757302817a0425b88bd3198a22523f21043bf1c15ad05"},
+    {file = "lightning-app-0.7.0.tar.gz", hash = "sha256:498f406fcc4bec328d40b88f3fbf0416b7b3795fa5843fd017473128cb071716"},
+    {file = "lightning_app-0.7.0-py3-none-any.whl", hash = "sha256:fdecdb2cfc8d7c472158ba08f2a417ee301e3ef8a0cdeb5791826a48bf69f712"},
 ]
 lightning-cloud = [
     {file = "lightning_cloud-0.5.7-py3-none-any.whl", hash = "sha256:185b1b6bcb4bc4b4d408d5c1c79b12b93de35dbfd088bc0e75e824a18a3e8d9d"},
