@@ -20,7 +20,7 @@ wandb = "^0.13.3"
 mlflow = "^1.30.0"
 gradio = "^3.6"
 bandit = "^1.7.4"
-streamlit = "^1.13.0"
+streamlit = "^1.14.0"
 stqdm = "^0.0.4"
 lightning = "^2022.10.20"
 
