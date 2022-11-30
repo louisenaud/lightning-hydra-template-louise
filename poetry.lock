@@ -734,7 +734,7 @@ tool = ["click (>=6.0.0)"]
 
 [[package]]
 name = "gradio"
-version = "3.11.0"
+version = "3.12.0"
 description = "Python library for easily interacting with trained machine learning models"
 category = "main"
 optional = false
@@ -2695,7 +2695,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.11"
-content-hash = "de7bd9311904414052881a661e60e3e73bc058021c9a3825dbe1a96dd9898002"
+content-hash = "c05589ba5a2068379ffc65eba6f69d24a6712763db46d92e86e2386d3d66c167"
 
 [metadata.files]
 absl-py = [
@@ -3249,8 +3249,8 @@ google-auth-oauthlib = [
     {file = "google_auth_oauthlib-0.4.6-py2.py3-none-any.whl", hash = "sha256:3f2a6e802eebbb6fb736a370fbf3b055edcb6b52878bf2f26330b5e041316c73"},
 ]
 gradio = [
-    {file = "gradio-3.11.0-py3-none-any.whl", hash = "sha256:000e1a3077446814209a85640c82156e8c9fefa9ba65bf16ab2a4b50a6360f5e"},
-    {file = "gradio-3.11.0.tar.gz", hash = "sha256:d4cb9e31b3bb6b746d75e7278607ca0f4db65306201ae5ae4fcef3917a6b0df3"},
+    {file = "gradio-3.12.0-py3-none-any.whl", hash = "sha256:7253cd23338b02e5aa70b27e967667f639f46b973583a32db7fedcc7a898b449"},
+    {file = "gradio-3.12.0.tar.gz", hash = "sha256:1473f24539b5735398decf768ac582cacc25117f1a29707f14ba8cfbf8f40da6"},
 ]
 greenlet = [
     {file = "greenlet-1.1.3.post0-cp27-cp27m-macosx_10_14_x86_64.whl", hash = "sha256:949c9061b8c6d3e6e439466a9be1e787208dec6246f4ec5fffe9677b4c19fcc3"},
