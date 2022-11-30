@@ -2283,7 +2283,7 @@ tests = ["pytest", "pytest-cov"]
 
 [[package]]
 name = "timm"
-version = "0.6.11"
+version = "0.6.12"
 description = "(Unofficial) PyTorch Image Models"
 category = "main"
 optional = false
@@ -2695,7 +2695,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.11"
-content-hash = "491e0ea9650c711eb50c06696aec911a202b6dfcd97285fd034e6e9837c95d28"
+content-hash = "de7bd9311904414052881a661e60e3e73bc058021c9a3825dbe1a96dd9898002"
 
 [metadata.files]
 absl-py = [
@@ -4578,8 +4578,8 @@ termcolor = [
     {file = "termcolor-2.0.1.tar.gz", hash = "sha256:6b2cf769e93364a2676e1de56a7c0cff2cf5bd07f37e9cc80b0dd6320ebfe388"},
 ]
 timm = [
-    {file = "timm-0.6.11-py3-none-any.whl", hash = "sha256:8a10e536ecc7caf32a7e42a612a1ae561a1e0d3f1aa836905855f8aff2efa644"},
-    {file = "timm-0.6.11.tar.gz", hash = "sha256:09568842b65abbd8c99864ab893ec0902f8ad577d0112b45e1323e72ca7b3fa5"},
+    {file = "timm-0.6.12-py3-none-any.whl", hash = "sha256:3dfa19b82afa707acc0c2392a84c0e549dd9ea626c285fb2e8d9e4073b58dbd1"},
+    {file = "timm-0.6.12.tar.gz", hash = "sha256:8f1747121598e06a1ea2d00df16d332cc284cdd4596bdc136b490a2122d3aa91"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
