@@ -23,6 +23,7 @@ bandit = "^1.7.5"
 streamlit = "^1.24.1"
 stqdm = "^0.0.5"
 lightning = "^2.0.5"
+pyrootutils = "^1.0.4"
 
 [tool.poetry.group.dev.dependencies]
 rich = "^13.4.2"
