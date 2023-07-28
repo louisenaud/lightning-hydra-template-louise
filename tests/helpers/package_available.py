@@ -1,7 +1,8 @@
 import platform
 
 import pkg_resources
-from pytorch_lightning.utilities.xla_device import XLADeviceUtils
+
+# from pytorch_lightning.utilities.xla_device import XLADeviceUtils
 
 
 def _package_available(package_name: str) -> bool:
@@ -12,8 +13,8 @@ def _package_available(package_name: str) -> bool:
         return False
 
 
-_TPU_AVAILABLE = XLADeviceUtils.tpu_device_exists()
-
+# _TPU_AVAILABLE = XLADeviceUtils.tpu_device_exists()
+_TPU_AVAILABLE = False
 _IS_WINDOWS = platform.system() == "Windows"
 
 _SH_AVAILABLE = not _IS_WINDOWS and _package_available("sh")
