@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Literal
 
 import torch
 from pytorch_lightning import LightningModule
@@ -22,8 +22,14 @@ class TimmLitModule(LightningModule):
         https://pytorch-lightning.readthedocs.io/en/latest/common/lightning_module.html
     """
 
-    def __init__(self, net: torch.nn.Module, optimizer: torch.optim.Optimizer, task: str = "train"):
-        super().__init__(task=task)
+    def __init__(
+        self,
+        net: torch.nn.Module,
+        optimizer: torch.optim.Optimizer,
+        task: Literal["binary", "multiclass", "multilabel"] = "multiclass",
+        n_classes: int = 10,
+    ):
+        super().__init__()
 
         # this line allows to access init params with 'self.hparams' attribute
         # also ensures init params will be stored in ckpt
@@ -36,9 +42,9 @@ class TimmLitModule(LightningModule):
 
         # use separate metric instance for train, val and test step
         # to ensure a proper reduction over the epoch
-        self.train_acc = Accuracy()
-        self.val_acc = Accuracy()
-        self.test_acc = Accuracy()
+        self.train_acc = Accuracy(task=task, num_classes=n_classes)
+        self.val_acc = Accuracy(task=task, num_classes=n_classes)
+        self.test_acc = Accuracy(task=task, num_classes=n_classes)
 
         # for logging best so far validation accuracy
         self.val_acc_best = MaxMetric()
@@ -85,7 +91,7 @@ class TimmLitModule(LightningModule):
         # remember to always return loss from `training_step()` or else backpropagation will fail!
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def training_epoch_end(self, outputs: List[Any]):
+    def on_training_epoch_end(self, outputs: List[Any]):
         # `outputs` is a list of dicts returned from `training_step()`
         self.train_acc.reset()
 
@@ -100,7 +106,7 @@ class TimmLitModule(LightningModule):
 
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def validation_epoch_end(self, outputs: List[Any]):
+    def on_validation_epoch_end(self):
         acc = self.val_acc.compute()  # get val accuracy from current epoch
         self.val_acc_best.update(acc)
         self.log("val/acc_best", self.val_acc_best.compute(), on_epoch=True, prog_bar=True)
@@ -117,7 +123,7 @@ class TimmLitModule(LightningModule):
 
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def test_epoch_end(self, outputs: List[Any]):
+    def on_test_epoch_end(self):
         self.test_acc.reset()
 
     def configure_optimizers(self):
