@@ -120,12 +120,15 @@ Install dependencies
 
 ```bash
 # clone project
-git clone https://github.com/vigneshbabupj/lightning-hydra-timm-template.git
-cd lightning-hydra-timm-template
+git clone https://github.com/louisenaud/lightning-hydra-template-louise.git
+cd lightning-hydra-template-louise
 
 # [OPTIONAL] create conda environment
 conda create -n myenv python=3.9
 conda activate myenv
+
+conda create -n py39 python=3.9.2
+conda activate py39
 
 # install pytorch according to instructions
 # https://pytorch.org/get-started/
