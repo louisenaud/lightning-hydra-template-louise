@@ -1,4 +1,4 @@
-from typing import Any, List
+from typing import Any, List, Literal
 
 import torch
 from pytorch_lightning import LightningModule
@@ -26,6 +26,8 @@ class MNISTLitModule(LightningModule):
         self,
         net: torch.nn.Module,
         optimizer: torch.optim.Optimizer,
+        task: Literal["binary", "multiclass", "multilabel"] = "multiclass",
+        n_classes: int = 10,
     ):
         super().__init__()
 
@@ -39,9 +41,9 @@ class MNISTLitModule(LightningModule):
         self.criterion = torch.nn.CrossEntropyLoss()
 
         # metric objects for calculating and averaging accuracy across batches
-        self.train_acc = Accuracy()
-        self.val_acc = Accuracy()
-        self.test_acc = Accuracy()
+        self.train_acc = Accuracy(task=task, num_classes=n_classes)
+        self.val_acc = Accuracy(task=task, num_classes=n_classes)
+        self.test_acc = Accuracy(task=task, num_classes=n_classes)
 
         # for averaging loss across batches
         self.train_loss = MeanMetric()
@@ -52,6 +54,11 @@ class MNISTLitModule(LightningModule):
         self.val_acc_best = MaxMetric()
 
         self.predict_transform = T.Normalize((0.1307,), (0.3081,))
+        # store outputs
+        self.training_step_outputs = []  # save outputs in each batch to compute metric overall epoch
+        self.training_step_targets = []  # save targets in each batch to compute metric overall epoch
+        self.val_step_outputs = []  # save outputs in each batch to compute metric overall epoch
+        self.val_step_targets = []  # save targets in each batch to compute metric overall epoch
 
     def forward(self, x: torch.Tensor):
         return self.net(x)
@@ -89,15 +96,24 @@ class MNISTLitModule(LightningModule):
         self.train_acc(preds, targets)
         self.log("train/loss", self.train_loss, on_step=False, on_epoch=True, prog_bar=True)
         self.log("train/acc", self.train_acc, on_step=False, on_epoch=True, prog_bar=True)
+        #
+        # # storing targets and predictions for metrics
+        # y_pred = preds.argmax(dim=1).cpu().numpy()
+        # y_true = targets.cpu().numpy()
+        self.training_step_outputs.extend(preds)
+        self.training_step_targets.extend(targets)
 
         # we can return here dict with any tensors
         # and then read it in some callback or in `training_epoch_end()` below
         # remember to always return loss from `training_step()` or backpropagation will fail!
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def training_epoch_end(self, outputs: List[Any]):
+    def on_train_epoch_end(self):
         # `outputs` is a list of dicts returned from `training_step()`
-        pass
+        # free up the memory
+        # --> HERE STEP 3 <--
+        self.training_step_outputs.clear()
+        self.training_step_targets.clear()
 
     def validation_step(self, batch: Any, batch_idx: int):
         loss, preds, targets = self.step(batch)
@@ -108,10 +124,16 @@ class MNISTLitModule(LightningModule):
         self.log("val/loss", self.val_loss, on_step=False, on_epoch=True, prog_bar=True)
         self.log("val/acc", self.val_acc, on_step=False, on_epoch=True, prog_bar=True)
 
+        # storing results
+        self.val_step_outputs.extend(preds)
+        self.val_step_targets.extend(targets)
+
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def validation_epoch_end(self, outputs: List[Any]):
-        acc = self.val_acc.compute()  # get current val acc
+    def on_validation_epoch_end(self):
+        val_all_outputs = torch.tensor(self.val_step_outputs)
+        val_all_targets = torch.tensor(self.val_step_targets)
+        acc = self.val_acc(val_all_outputs, val_all_targets)  # get current val acc
         self.val_acc_best(acc)  # update best so far val acc
         # log `val_acc_best` as a value through `.compute()` method, instead of as a metric object
         # otherwise metric would be reset by lightning after each epoch
@@ -128,7 +150,7 @@ class MNISTLitModule(LightningModule):
 
         return {"loss": loss, "preds": preds, "targets": targets}
 
-    def test_epoch_end(self, outputs: List[Any]):
+    def on_test_epoch_end(self):
         pass
 
     def configure_optimizers(self):

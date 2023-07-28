@@ -22,12 +22,8 @@ class TimmLitModule(LightningModule):
         https://pytorch-lightning.readthedocs.io/en/latest/common/lightning_module.html
     """
 
-    def __init__(
-        self,
-        net: torch.nn.Module,
-        optimizer: torch.optim.Optimizer,
-    ):
-        super().__init__()
+    def __init__(self, net: torch.nn.Module, optimizer: torch.optim.Optimizer, task: str = "train"):
+        super().__init__(task=task)
 
         # this line allows to access init params with 'self.hparams' attribute
         # also ensures init params will be stored in ckpt
