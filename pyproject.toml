@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Template Python project for research experiments tracking in Pytorch Lightning and Hydra"
 authors = ["Louise NAUD <louise.naud@gmail.com>"]
 readme = "README.md"
-packages = [{ include = "lightning_hydra_template_louise" }]
+#packages = [{ include = "lightning_hydra_template_louise" }]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.9.7 || >3.9.7,<3.12"
